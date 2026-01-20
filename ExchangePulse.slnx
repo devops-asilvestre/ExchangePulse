@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <File Path="LeiaMe.txt" />
+    <Project Path="src/ExchangePulse.Api/ExchangePulse.Api.csproj" />
+    <Project Path="src/ExchangePulse.Application/ExchangePulse.Application.csproj" />
+    <Project Path="src/ExchangePulse.Domain/ExchangePulse.Domain.csproj" />
+    <Project Path="src/ExchangePulse.Infrastructure/ExchangePulse.Infrastructure.csproj" />
+    <Project Path="src/ExchangePulse.Workers/ExchangePulse.Workers.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ExchangePulse.ContractTests/ExchangePulse.ContractTests.csproj" />
+    <Project Path="tests/ExchangePulse.IntegrationTests/ExchangePulse.IntegrationTests.csproj" />
+    <Project Path="tests/ExchangePulse.UnitTests/ExchangePulse.UnitTests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,12 @@
+
+
+cd C:\Users\Cliente\source\repos\2026\ExchangePulseBackend\; 
+cls; dotnet restore; dotnet clean; 
+dotnet build; dotnet ef migrations add InitialCreate -p src/ExchangePulse.Infrastructure -s src/ExchangePulse.Api; 
+
+dotnet ef database update -p src/ExchangePulse.Infrastructure -s src/ExchangePulse.Api
+
+
+cd C:\Users\Cliente\source\repos\2026\ExchangePulseBackend\; cls; dotnet restore; dotnet clean; dotnet build; dotnet ef migrations add InitialCreate -p src/ExchangePulse.Infrastructure -s src/ExchangePulse.Api; dotnet ef database update -p src/ExchangePulse.Infrastructure -s src/ExchangePulse.Api
+
+
