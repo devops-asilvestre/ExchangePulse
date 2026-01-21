@@ -8,6 +8,7 @@ Ele permite:
 - Calcular métricas financeiras (médias móveis, volatilidade, Sharpe, drawdown, VaR).
 - Integrar dados macroeconômicos (taxa de juros SELIC e inflação IPCA).
 - Executar atualizações automáticas via HostedService.
+- Executar atualizações manuais em caso de falha ou instabilidade.
 
 ---
 
@@ -35,6 +36,10 @@ Ele permite:
   - `Create(ExchangeMetricDTO dto)` → Cadastra nova métrica.
   - `Update(Guid id, ExchangeMetricDTO dto)` → Atualiza métrica existente.
   - `Delete(Guid id)` → Remove métrica pelo ID.
+
+- **ExchangeRateUpdateController**
+  - `ManualUpdate(Guid currencyId, DateTime start, DateTime end)` → Executa atualização manual para uma moeda específica em um período informado.
+  - `ManualUpdateAll(DateTime start, DateTime end)` → Executa atualização manual para **todas as moedas cadastradas** em um período informado.
 
 ---
 
@@ -186,7 +191,6 @@ Com os dados de **cotações** e **métricas financeiras** armazenados pelo Exch
 | 2026-01-12 | 13.75     | 0.45     |
 
 ---
-
 ## 🏛️ Decisão de Design: Uso de PTAX/SGS em vez da B3
 
 O ExchangePulse utiliza como fonte principal de dados as APIs **PTAX** e **SGS** do **Banco Central do Brasil**.  
