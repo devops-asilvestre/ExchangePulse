@@ -34,6 +34,19 @@ builder.Services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
 builder.Services.AddScoped<IExchangeMetricService, ExchangeMetricService>();
 builder.Services.AddScoped<IExchangeMetricRepository, ExchangeMetricRepository>();
 
+// Serviços e repositórios de relatórios
+builder.Services.AddScoped<IMarketReportService, MarketReportService>();
+builder.Services.AddScoped<IMacroReportService, MacroReportService>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+
+// (Opcional) Exportação de relatórios
+// builder.Services.AddScoped<IReportExporter, ReportExporter>();
+
+// Serviços e repositórios de relatórios
+builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+
+
 // Serviços externos
 builder.Services.AddHttpClient<IExchangeRateFetcher, BcbExchangeRateFetcher>();
 builder.Services.AddHttpClient<IBcbDataFetcher, BcbDataFetcher>();
