@@ -1,0 +1,682 @@
+{
+  "info": {
+    "name": "ExchangePulse API",
+    "schema": "httpss://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "exchangepulse-collection-id"
+  },
+  "item": [
+    {
+      "name": "CurrencyController",
+      "item": [
+        {
+          "name": "Get All Currencies",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/currency",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "currency"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Currency by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/currency/{{currencyId}}",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "currency",
+                "{{currencyId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Currency",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/currency",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "currency"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"D\\u00f3lar Americano\",\n  \"code\": \"USD\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Currency",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/currency/{{currencyId}}",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "currency",
+                "{{currencyId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"D\\u00f3lar Atualizado\",\n  \"code\": \"USD\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Currency",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/currency/{{currencyId}}",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "currency",
+                "{{currencyId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ExchangeRateController",
+      "item": [
+        {
+          "name": "Get All Exchange Rates",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangerate",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangerate"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Exchange Rate by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangerate/{{rateId}}",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangerate",
+                "{{rateId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Exchange Rate by Currency and Period",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangerate/currency/{{currencyId}}?start=2025-01-01&end=2025-12-31",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangerate",
+                "currency",
+                "{{currencyId}}?start=2025-01-01&end=2025-12-31"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Exchange Rate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangerate",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangerate"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyId\": \"{{currencyId}}\",\n  \"date\": \"2025-01-01\",\n  \"buyPrice\": 4.95,\n  \"sellPrice\": 5.05\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Exchange Rate",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangerate/{{rateId}}",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangerate",
+                "{{rateId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyId\": \"{{currencyId}}\",\n  \"date\": \"2025-01-01\",\n  \"buyPrice\": 4.9,\n  \"sellPrice\": 5.0\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Exchange Rate",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangerate/{{rateId}}",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangerate",
+                "{{rateId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ExchangeMetricController",
+      "item": [
+        {
+          "name": "Get All Metrics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangemetric",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangemetric"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Metric by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangemetric/{{metricId}}",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangemetric",
+                "{{metricId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Metric",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangemetric",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangemetric"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyId\": \"{{currencyId}}\",\n  \"date\": \"2025-01-01\",\n  \"movingAverage7d\": 5.0,\n  \"movingAverage30d\": 5.1,\n  \"volatility30d\": 0.02,\n  \"logReturn\": 0.01,\n  \"sharpeDaily\": 1.2,\n  \"sharpeAnnual\": 3.5,\n  \"drawdown\": -0.05,\n  \"vaREmpirical95\": -0.03,\n  \"vaRCornishFisher95\": -0.025,\n  \"interestRate\": 0.13,\n  \"inflation\": 0.045\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Metric",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangemetric/{{metricId}}",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangemetric",
+                "{{metricId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyId\": \"{{currencyId}}\",\n  \"date\": \"2025-01-01\",\n  \"movingAverage7d\": 5.2,\n  \"movingAverage30d\": 5.3,\n  \"volatility30d\": 0.021,\n  \"logReturn\": 0.012,\n  \"sharpeDaily\": 1.3,\n  \"sharpeAnnual\": 3.6,\n  \"drawdown\": -0.04,\n  \"vaREmpirical95\": -0.028,\n  \"vaRCornishFisher95\": -0.024,\n  \"interestRate\": 0.14,\n  \"inflation\": 0.046\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Metric",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangemetric/{{metricId}}",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangemetric",
+                "{{metricId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ExchangeRateUpdateController",
+      "item": [
+        {
+          "name": "Manual Update for Currency",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangerateupdate/manual?currencyId={{currencyId}}&start=2025-01-01&end=2025-12-31",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangerateupdate",
+                "manual?currencyId={{currencyId}}&start=2025-01-01&end=2025-12-31"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Manual Update for All Currencies",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/exchangerateupdate/manual/all?start=2025-01-01&end=2025-12-31",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "exchangerateupdate",
+                "manual",
+                "all?start=2025-01-01&end=2025-12-31"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ReportController",
+      "item": [
+        {
+          "name": "Relat\u00f3rio - Cota\u00e7\u00f5es Hist\u00f3ricas",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/report/cotacoes",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "report",
+                "cotacoes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyIds\": [\n    \"{{currencyId}}\"\n  ],\n  \"start\": \"2025-01-01\",\n  \"end\": \"2025-12-31\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"orderBy\": \"Date\",\n  \"orderDirection\": \"ASC\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Relat\u00f3rio - M\u00e9dias M\u00f3veis",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/report/medias-moveis",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "report",
+                "medias-moveis"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyIds\": [\n    \"{{currencyId}}\"\n  ],\n  \"start\": \"2025-01-01\",\n  \"end\": \"2025-12-31\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"orderBy\": \"Date\",\n  \"orderDirection\": \"ASC\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Relat\u00f3rio - Volatilidade",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/report/volatilidade",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "report",
+                "volatilidade"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyIds\": [\n    \"{{currencyId}}\"\n  ],\n  \"start\": \"2025-01-01\",\n  \"end\": \"2025-12-31\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"orderBy\": \"Date\",\n  \"orderDirection\": \"ASC\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Relat\u00f3rio - Retornos e Sharpe",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/report/retornos-sharpe",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "report",
+                "retornos-sharpe"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyIds\": [\n    \"{{currencyId}}\"\n  ],\n  \"start\": \"2025-01-01\",\n  \"end\": \"2025-12-31\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"orderBy\": \"Date\",\n  \"orderDirection\": \"ASC\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Relat\u00f3rio - Drawdown",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/report/drawdown",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "report",
+                "drawdown"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyIds\": [\n    \"{{currencyId}}\"\n  ],\n  \"start\": \"2025-01-01\",\n  \"end\": \"2025-12-31\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"orderBy\": \"Date\",\n  \"orderDirection\": \"ASC\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Relat\u00f3rio - Value-at-Risk",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/report/var",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "report",
+                "var"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyIds\": [\n    \"{{currencyId}}\"\n  ],\n  \"start\": \"2025-01-01\",\n  \"end\": \"2025-12-31\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"orderBy\": \"Date\",\n  \"orderDirection\": \"ASC\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Relat\u00f3rio - Macroecon\u00f4mico",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://localhost:7179/api/v1/report/macro",
+              "host": [
+                "https://localhost:7179"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "report",
+                "macro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencyIds\": [],\n  \"start\": \"2025-01-01\",\n  \"end\": \"2025-12-31\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"orderBy\": \"Date\",\n  \"orderDirection\": \"ASC\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
