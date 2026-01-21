@@ -95,10 +95,11 @@ namespace ExchangePulse.Application.Services
                     Inflation = ipca
                 };
 
+                
                 await _metricService.CreateAsync(metricDto);
             }
         }
-
+        
         // Função auxiliar para variância
         private static double Variance(IEnumerable<double> values)
         {
