@@ -1,4 +1,8 @@
 
+SELECT dbo.ExchangeMetrics.Id, dbo.ExchangeMetrics.Date, dbo.ExchangeMetrics.CurrencyId, dbo.Currencies.Code, dbo.Currencies.Name, dbo.Currencies.Country, dbo.ExchangeMetrics.DailyVariation, dbo.ExchangeMetrics.LogReturn, dbo.ExchangeMetrics.MovingAverage7d, dbo.ExchangeMetrics.MovingAverage30d, dbo.ExchangeMetrics.Volatility30d, dbo.ExchangeMetrics.SharpeDaily, dbo.ExchangeMetrics.SharpeAnnual, dbo.ExchangeMetrics.Drawdown, dbo.ExchangeMetrics.Beta, dbo.ExchangeMetrics.VaREmpirical95, dbo.ExchangeMetrics.VaRCornishFisher95, dbo.ExchangeMetrics.InterestRate, dbo.ExchangeMetrics.Inflation FROM   dbo.ExchangeMetrics INNER JOIN dbo.Currencies ON dbo.ExchangeMetrics.CurrencyId = dbo.Currencies.Id
+
+SELECT dbo.ExchangeRates.Id, dbo.ExchangeRates.Date, dbo.ExchangeRates.CurrencyId, dbo.Currencies.Code, dbo.Currencies.Name, dbo.Currencies.Country, dbo.ExchangeRates.BuyPrice, dbo.ExchangeRates.SellPrice, dbo.ExchangeRates.Volume, dbo.ExchangeRates.Source, dbo.ExchangeRates.MacroEvents FROM   dbo.ExchangeRates INNER JOIN dbo.Currencies ON dbo.ExchangeRates.CurrencyId = dbo.Currencies.Id
+
 
 cd C:\Users\Cliente\source\repos\2026\ExchangePulseBackend\; 
 cls; dotnet restore; dotnet clean; 

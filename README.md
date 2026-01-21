@@ -15,90 +15,67 @@ Ele permite:
 
 ### **Controllers**
 - **CurrencyController**
-  - `GetAll()` → Lista todas as moedas.
+  - `GetAll()` → Lista todas as moedas cadastradas.
   - `GetById(Guid id)` → Obtém moeda pelo ID.
   - `Create(CurrencyDTO dto)` → Cadastra nova moeda.
   - `Update(Guid id, CurrencyDTO dto)` → Atualiza moeda existente.
   - `Delete(Guid id)` → Remove moeda pelo ID.
 
-- **ExchangeRateController** *(a implementar)*  
-- **ExchangeMetricController** *(a implementar)*  
+- **ExchangeRateController**
+  - `GetAll()` → Lista todas as cotações cadastradas.
+  - `GetById(Guid id)` → Obtém cotação pelo ID.
+  - `GetByCurrency(Guid currencyId, DateTime start, DateTime end)` → Obtém histórico de cotações de uma moeda em um período.
+  - `Create(ExchangeRateDTO dto)` → Cadastra nova cotação.
+  - `Update(Guid id, ExchangeRateDTO dto)` → Atualiza cotação existente.
+  - `Delete(Guid id)` → Remove cotação pelo ID.
+
+- **ExchangeMetricController**
+  - `GetAll()` → Lista todas as métricas financeiras cadastradas.
+  - `GetById(Guid id)` → Obtém métrica pelo ID.
+  - `Create(ExchangeMetricDTO dto)` → Cadastra nova métrica.
+  - `Update(Guid id, ExchangeMetricDTO dto)` → Atualiza métrica existente.
+  - `Delete(Guid id)` → Remove métrica pelo ID.
 
 ---
 
 ### **Services**
 - **CurrencyService**
-  - `GetAllAsync()` → Retorna todas as moedas.
-  - `GetByIdAsync(Guid id)` → Retorna moeda pelo ID.
-  - `CreateAsync(CurrencyDTO dto)` → Cria nova moeda.
-  - `UpdateAsync(Guid id, CurrencyDTO dto)` → Atualiza moeda existente.
-  - `DeleteAsync(Guid id)` → Remove moeda.
-
+  - CRUD completo para moedas.
 - **ExchangeRateService**
-  - `GetAllAsync()` → Retorna todas as cotações.
-  - `GetByIdAsync(Guid id)` → Retorna cotação pelo ID.
-  - `CreateAsync(ExchangeRateDTO dto)` → Cria nova cotação.
-  - `UpdateAsync(Guid id, ExchangeRateDTO dto)` → Atualiza cotação.
-  - `DeleteAsync(Guid id)` → Remove cotação.
-  - `GetByCurrencyAsync(Guid currencyId, DateTime start, DateTime end)` → Retorna histórico de cotações por moeda e período.
-
+  - CRUD completo para cotações + histórico por moeda/período.
 - **ExchangeMetricService**
-  - `GetAllAsync()` → Retorna todas as métricas.
-  - `GetByIdAsync(Guid id)` → Retorna métrica pelo ID.
-  - `CreateAsync(ExchangeMetricDTO dto)` → Cria nova métrica.
-  - `UpdateAsync(Guid id, ExchangeMetricDTO dto)` → Atualiza métrica.
-  - `DeleteAsync(Guid id)` → Remove métrica.
-
+  - CRUD completo para métricas.
 - **ExchangeRateUpdater**
-  - `UpdateUsdBrlPeriodAsync(Guid currencyId, DateTime start, DateTime end)` → Busca cotações USD/BRL, salva no banco e calcula métricas financeiras.
-  - `Variance(IEnumerable<double> values)` → Função auxiliar para cálculo de variância.
+  - Atualiza cotações USD/BRL e calcula métricas financeiras.
 
 ---
 
 ### **Repositories**
-- **CurrencyRepository**
-  - CRUD completo para `Currency`.
-
-- **ExchangeRateRepository**
-  - CRUD completo para `ExchangeRate`.
-  - `GetByCurrencyAsync(Guid currencyId, DateTime start, DateTime end)` → Histórico de cotações.
-
-- **ExchangeMetricRepository**
-  - CRUD completo para `ExchangeMetric`.
+- **CurrencyRepository** → CRUD de moedas.  
+- **ExchangeRateRepository** → CRUD de cotações + histórico.  
+- **ExchangeMetricRepository** → CRUD de métricas.  
 
 ---
 
 ### **External Services**
-- **BcbExchangeRateFetcher**
-  - `GetUsdBrlRatesAsync(DateTime start, DateTime end)` → Busca cotações USD/BRL via API PTAX.
-
-- **BcbDataFetcher**
-  - `GetSelicAsync(DateTime date)` → Busca taxa SELIC diária via API SGS.
-  - `GetIpcaAsync(DateTime date)` → Busca IPCA mensal via API SGS com fallback.
+- **BcbExchangeRateFetcher** → Busca cotações USD/BRL via API PTAX.  
+- **BcbDataFetcher** → Busca SELIC e IPCA via API SGS.  
 
 ---
 
 ### **Background Services**
-- **ExchangeRateBackgroundService**
-  - Executa atualização automática de cotações e métricas em agendamento configurável.
-  - Suporta modo produção (horário fixo) e modo teste (execução a cada minuto).
+- **ExchangeRateBackgroundService** → Executa atualização automática de cotações e métricas em agendamento configurável.  
 
 ---
 
 ### **Persistence**
-- **ExchangePulseDbContext**
-  - Configuração EF Core para `Currency`, `ExchangeRate`, `ExchangeMetric`.
-  - Define constraints, tipos de coluna e relacionamentos.
-
-- **CurrencySeeder**
-  - Popula moedas iniciais (USD, BRL, EUR, etc.).
+- **ExchangePulseDbContext** → Configuração EF Core para entidades.  
+- **CurrencySeeder** → Popula moedas iniciais.  
 
 ---
 
 ### **Validators**
-- **CurrencyDTOValidator**
-  - Valida código ISO (3 letras maiúsculas).
-  - Valida nome e país (não vazios, máximo 100 caracteres).
+- **CurrencyDTOValidator** → Valida dados de entrada de moedas.  
 
 ---
 
@@ -151,6 +128,84 @@ Ele permite:
 | VaRCornishFisher95 | decimal  | Value-at-Risk ajustado Cornish-Fisher. |
 | InterestRate       | decimal  | Taxa SELIC. |
 | Inflation          | decimal  | Inflação IPCA. |
+
+---
+
+## 📊 Relatórios e Finalidades
+
+Com os dados de **cotações** e **métricas financeiras** armazenados pelo ExchangePulse, é possível gerar diversos relatórios úteis para análise econômica e tomada de decisão:
+
+### 1. Relatório de Cotações Históricas
+- **Finalidade:** acompanhar tendências cambiais e apoiar decisões de importação/exportação.
+- **Exemplo:**
+| Data       | Compra   | Venda   | Média |
+|------------|----------|---------|-------|
+| 2026-01-10 | 5.10     | 5.15    | 5.125 |
+| 2026-01-11 | 5.12     | 5.18    | 5.150 |
+
+### 2. Relatório de Médias Móveis
+- **Finalidade:** identificar tendências de curto e médio prazo.
+- **Exemplo:**
+| Data       | Média 7d | Média 30d |
+|------------|----------|-----------|
+| 2026-01-12 | 5.11     | 5.09      |
+
+### 3. Relatório de Volatilidade
+- **Finalidade:** medir o risco associado à moeda.
+- **Exemplo:**
+| Período    | Volatilidade 30d |
+|------------|------------------|
+| Jan/2026   | 0.045            |
+
+### 4. Relatório de Retornos e Índice de Sharpe
+- **Finalidade:** avaliar se o retorno compensa o risco.
+- **Exemplo:**
+| Data       | Retorno Log | Sharpe Diário | Sharpe Anual |
+|------------|-------------|---------------|--------------|
+| 2026-01-12 | 0.0021      | 1.25          | 19.8         |
+
+### 5. Relatório de Drawdown
+- **Finalidade:** medir risco de queda acentuada.
+- **Exemplo:**
+| Período    | Máximo | Mínimo | Drawdown |
+|------------|--------|--------|----------|
+| Jan/2026   | 5.20   | 5.05   | -2.88%   |
+
+### 6. Relatório de Value-at-Risk (VaR)
+- **Finalidade:** estimar perda máxima esperada com 95% de confiança.
+- **Exemplo:**
+| Período    | VaR Empírico 95% | VaR Cornish-Fisher 95% |
+|------------|------------------|------------------------|
+| Jan/2026   | -0.035           | -0.032                 |
+
+### 7. Relatório Macroeconômico
+- **Finalidade:** contextualizar o câmbio dentro do cenário econômico nacional.
+- **Exemplo:**
+| Data       | SELIC (%) | IPCA (%) |
+|------------|-----------|----------|
+| 2026-01-12 | 13.75     | 0.45     |
+
+---
+
+## 🏛️ Decisão de Design: Uso de PTAX/SGS em vez da B3
+
+O ExchangePulse utiliza como fonte principal de dados as APIs **PTAX** e **SGS** do **Banco Central do Brasil**.  
+Essa escolha foi feita com base nos seguintes pontos:
+
+### 🔎 Motivos da decisão
+- **Dados oficiais e auditáveis**: PTAX e SGS são mantidos pelo Banco Central, garantindo confiabilidade e consistência.  
+- **Gratuidade e acesso público**: não há custos de licenciamento ou barreiras de acesso.  
+- **Cobertura macroeconômica**: além das cotações oficiais, o SGS fornece indicadores como **SELIC** e **IPCA**, fundamentais para análises financeiras.  
+- **Relatórios consistentes**: ao usar dados oficiais, os relatórios gerados pelo sistema podem ser comparados diretamente com publicações oficiais e utilizados em contextos acadêmicos ou corporativos.  
+
+### 📌 Limitações reconhecidas
+- **Volume de negociação**: a API PTAX não fornece dados de volume ou número de negócios.  
+- **Granularidade intraday**: os dados são disponibilizados em frequência diária, sem detalhamento minuto a minuto.  
+
+### ✅ Estratégia adotada
+- O campo **Volume** permanece como `0` quando a fonte não fornece essa informação.  
+- Caso seja necessário incluir dados de negociação (volume, número de negócios, book de ofertas), será avaliada integração futura com a **API oficial da B3** (licenciada) ou com **APIs gratuitas de terceiros** (ex.: brapi.dev, HG Brasil).  
+- Para o objetivo atual — **monitorar câmbio oficial e métricas macroeconômicas** — o uso de PTAX/SGS é a melhor estratégia para garantir **dados confiáveis e relatórios consistentes**.  
 
 ---
 
