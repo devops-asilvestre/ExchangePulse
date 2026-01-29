@@ -141,7 +141,7 @@ Com os dados de **cotações** e **métricas financeiras** armazenados pelo Exch
 
 ### 1. Relatório de Cotações Históricas
 - **Finalidade:** acompanhar tendências cambiais e apoiar decisões de importação/exportação.
-- **Exemplo:**
+### Exemplo
 | Data       | Compra   | Venda   | Média |
 |------------|----------|---------|-------|
 | 2026-01-10 | 5.10     | 5.15    | 5.125 |
@@ -149,45 +149,54 @@ Com os dados de **cotações** e **métricas financeiras** armazenados pelo Exch
 
 ### 2. Relatório de Médias Móveis
 - **Finalidade:** identificar tendências de curto e médio prazo.
-- **Exemplo:**
-| Data       | Média 7d | Média 30d |
-|------------|----------|-----------|
-| 2026-01-12 | 5.11     | 5.09      |
+### Exemplo
+| Data       | TipMédia 7d |Média 30d |
+|------------|-------------|----------|
+| 2026-01-12 | 5.11        | 5.09     |
+| 2026-01-13 | 5.12        | 5.10     |
+
 
 ### 3. Relatório de Volatilidade
 - **Finalidade:** medir o risco associado à moeda.
-- **Exemplo:**
+### Exemplo
 | Período    | Volatilidade 30d |
 |------------|------------------|
 | Jan/2026   | 0.045            |
+| Fev/2026   | 0.053            |
 
 ### 4. Relatório de Retornos e Índice de Sharpe
 - **Finalidade:** avaliar se o retorno compensa o risco.
-- **Exemplo:**
+### Exemplo
 | Data       | Retorno Log | Sharpe Diário | Sharpe Anual |
 |------------|-------------|---------------|--------------|
 | 2026-01-12 | 0.0021      | 1.25          | 19.8         |
+| 2026-01-13 | 0.0021      | 1.25          | 19.8         |
+| 2026-01-14 | 0.0022      | 1.26          | 19.9         |
 
 ### 5. Relatório de Drawdown
 - **Finalidade:** medir risco de queda acentuada.
-- **Exemplo:**
+### Exemplo
 | Período    | Máximo | Mínimo | Drawdown |
 |------------|--------|--------|----------|
 | Jan/2026   | 5.20   | 5.05   | -2.88%   |
+| Fev/2026   | 5.20   | 5.05   | -2.88%   |
 
 ### 6. Relatório de Value-at-Risk (VaR)
 - **Finalidade:** estimar perda máxima esperada com 95% de confiança.
-- **Exemplo:**
+### Exemplo
 | Período    | VaR Empírico 95% | VaR Cornish-Fisher 95% |
 |------------|------------------|------------------------|
 | Jan/2026   | -0.035           | -0.032                 |
+| Fev/2026   | -0.035           | -0.032                 |
 
 ### 7. Relatório Macroeconômico
 - **Finalidade:** contextualizar o câmbio dentro do cenário econômico nacional.
-- **Exemplo:**
+### Exemplo
 | Data       | SELIC (%) | IPCA (%) |
 |------------|-----------|----------|
 | 2026-01-12 | 13.75     | 0.45     |
+| 2026-01-13 | 13.75     | 0.45     |
+| 2026-01-14 | 13.75     | 0.45     |
 
 ---
 ## Relatórios e Finalidades
@@ -197,6 +206,7 @@ Com os dados de cotações e métricas financeiras armazenados pelo ExchangePuls
 ### Filtros Globais
 Todos os relatórios utilizam ReportFilterDTO para entrada de parâmetros:
 
+### Exemplo
 {
   "currencyIds": ["11111111-1111-1111-1111-111111111111"],
   "start": "2025-01-01",
@@ -209,6 +219,7 @@ Todos os relatórios utilizam ReportFilterDTO para entrada de parâmetros:
 
 ### Retorno Padronizado
 Todos os relatórios retornam PagedResultDTO<T>:
+
 
 {
   "items": [ ... ],
